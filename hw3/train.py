@@ -21,9 +21,9 @@ set_session(tf.Session(config=config))
 
 BATCH_SIZE = 10
 
-def train(mode):
-	TRAIN_DIR = "hw3-train-validation/train/"
-	VAL_DIR = "hw3-train-validation/validation/"
+def train(mode,TRAIN_DIR,VAL_DIR):
+	#TRAIN_DIR = "hw3-train-validation/train/"
+	#VAL_DIR = "hw3-train-validation/validation/"
 
 	print("loading......")
 	x_train = read_images(TRAIN_DIR)
@@ -54,8 +54,12 @@ def train(mode):
 if __name__ == '__main__':
 	parser = argparse.ArgumentParser()
 	parser.add_argument('-mo', '--mode', help='training mode', type=str)
+	parser.add_argument('-t', '--train', help='training images directory', type=str)
+	parser.add_argument('-v', '--val', help='validation images directory', type=str)
 	args = parser.parse_args()
 	mode = args.mode
-	print(mode)
-	train(mode)
+	TRAIN_DIR = args.train
+	VAL_DIR = args.val
+
+	train(mode,TRAIN_DIR,VAL_DIR)
 
