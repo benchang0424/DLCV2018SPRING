@@ -33,10 +33,10 @@ def train(n_epochs, train_loader):
 		D.cuda()
 
 	# setup optimizer
-	optimizerD = optim.Adam(D.parameters(), lr=0.0003, betas=(0.5, 0.999))
-	optimizerG = optim.Adam(G.parameters(), lr=0.0003, betas=(0.5, 0.999))
+	optimizerD = optim.Adam(D.parameters(), lr=0.0002, betas=(0.5, 0.999))
+	optimizerG = optim.Adam(G.parameters(), lr=0.0002, betas=(0.5, 0.999))
 	
-	criterion_dis = nn.BCELoss()	# smiling or not
+	criterion_dis = nn.BCELoss()
 	criterion_aux = nn.BCELoss()
 
 
@@ -60,8 +60,6 @@ def train(n_epochs, train_loader):
 
 		for batch_idx, (data, real_class) in enumerate(train_loader):
 			batch_size = len(data)
-			#real_class = torch.FloatTensor(real_class).view(-1,1,1,1)
-			#real_class = real_class.view(-1,1,1,1)
 			data = to_var(data)
 			real_class = to_var(real_class)
 			real_labels = to_var(torch.ones(batch_size))
@@ -103,8 +101,6 @@ def train(n_epochs, train_loader):
 			Real_total_acc += D_accu_real
 			Fake_total_acc += D_accu_fake
 
-			#D_loss_back = D_loss_real + D_loss_fake
-			#D_loss_back.backward()
 			optimizerD.step()
 
 			# ================================================================== #
@@ -129,8 +125,7 @@ def train(n_epochs, train_loader):
 			G_loss.backward()
 			optimizerG.step()
 
-			if batch_idx % 5 == 0:
-				
+			if batch_idx % 5 == 0:		
 				print('\rTrain Epoch: {} [{}/{} ({:.0f}%)]| D_Loss: {:.6f} , G_loss: {:.6f}| Real_Acc: {:.6f} , Fake_Acc: {:.6f}| Time: {}  '.format(
 					epoch+1, (batch_idx+1) * len(data), len(train_loader.dataset),
 					100. * batch_idx * len(data)/ len(train_loader.dataset),
@@ -144,7 +139,7 @@ def train(n_epochs, train_loader):
 			epoch+1, D_total_loss/len(train_loader), G_total_loss/len(train_loader),
 			Real_aux_total_loss/len(train_loader), Fake_aux_total_loss/len(train_loader),
 			Real_total_acc/len(train_loader), Fake_total_acc/len(train_loader)))
-		print('-'*88)
+		print('-'*99)
 
 		D_loss_list.append(D_total_loss/len(train_loader))
 		G_loss_list.append(G_total_loss/len(train_loader))
@@ -159,8 +154,8 @@ def train(n_epochs, train_loader):
 		torchvision.utils.save_image(rand_outputs.cpu().data,
 								'./output_imgs/acgan/fig3_3_%03d.jpg' %(epoch+1), nrow=10)
 		
-	torch.save(G.state_dict(), './saves/save_models/ACGenerator.pth')
-	torch.save(D.state_dict(), './saves/save_models/ACDiscriminator.pth')
+		torch.save(G.state_dict(), './saves/save_models/ACGenerator_%03d.pth' %(epoch+1))
+		torch.save(D.state_dict(), './saves/save_models/ACDiscriminator_%03d.pth' %(epoch+1))
 
 	with open('./saves/acgan/D_loss.pkl', 'wb') as fp:
 		pickle.dump(D_loss_list, fp)
@@ -196,7 +191,7 @@ def main(args):
 
 
 if __name__ == '__main__':
-	parser = argparse.ArgumentParser(description='VAE Example')
+	parser = argparse.ArgumentParser(description='ACGAN Example')
 	parser.add_argument('--train_path', help='training data directory', type=str)
 	args = parser.parse_args()
 	main(args)

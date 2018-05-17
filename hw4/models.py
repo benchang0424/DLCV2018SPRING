@@ -199,21 +199,14 @@ class ACDiscriminator(nn.Module):
 			nn.Sigmoid()
 		)
 		self.out_aux = nn.Sequential(
-			nn.Conv2d(ndf * 8, ndf, kernel_size=4, stride=1, padding=0, bias=False),
-			nn.BatchNorm2d(ndf),
-			nn.LeakyReLU(0.2, inplace=True)	
-		)
-		self.Li_out_aux = nn.Sequential(
-			nn.Linear(ndf, 1),
-			nn.Sigmoid()
+			nn.Conv2d(ndf * 8, 1, kernel_size=4, stride=1, padding=0, bias=False),
+            nn.Sigmoid()
 		)
 
 	def forward(self, x):
 		hidden = self.main(x)
 		output_dis = self.out_dis(hidden)
 		output_aux = self.out_aux(hidden)
-		flat = output_aux.view(-1,64)
-		output_aux = self.Li_out_aux(flat)
 		return output_dis, output_aux
 
 

@@ -31,8 +31,8 @@ def train(n_epochs, train_loader):
 		D.cuda()
 
 	# setup optimizer
-	optimizerD = optim.Adam(D.parameters(), lr=0.0003, betas=(0.5, 0.999))
-	optimizerG = optim.Adam(G.parameters(), lr=0.0003, betas=(0.5, 0.999))
+	optimizerD = optim.Adam(D.parameters(), lr=0.0002, betas=(0.5, 0.999))
+	optimizerG = optim.Adam(G.parameters(), lr=0.0002, betas=(0.5, 0.999))
 	criterion = nn.BCELoss()
 
 
@@ -123,10 +123,10 @@ def train(n_epochs, train_loader):
 		rand_outputs = G(rand_inputs)
 		G.train()
 		torchvision.utils.save_image(rand_outputs.cpu().data,
-								'./output_imgs/gan/fig2_3_%02d.jpg' %(epoch+1), nrow=8)
+								'./output_imgs/gan/fig2_3_%03d.jpg' %(epoch+1), nrow=8)
 		
-	torch.save(G.state_dict(), './saves/save_models/Generator.pth')
-	torch.save(D.state_dict(), './saves/save_models/Discriminator.pth')
+		torch.save(G.state_dict(), './saves/save_models/Generator_%03d.pth'%(epoch+1))
+		torch.save(D.state_dict(), './saves/save_models/Discriminator_%03d.pth'%(epoch+1))
 
 	with open('./saves/gan/D_loss.pkl', 'wb') as fp:
 		pickle.dump(D_loss_list, fp)
@@ -138,8 +138,7 @@ def train(n_epochs, train_loader):
 		pickle.dump(D_fake_acc_list, fp)
 
 
-def main(args):
-	
+def main(args):	
 	#TRAIN_DIR = "./hw4_data/train/"
 	#TEST_DIR = "./hw4_data/test/"
 	#TRAIN_CSVDIR = "./hw4_data/train.csv"
@@ -154,13 +153,13 @@ def main(args):
 	print("Read Data Done !!!")
 	train_loader = DataLoader(train_data, batch_size=BATCH_SIZE, shuffle=True, num_workers=1)
 	print("Enter Train")
-	train(100, train_loader)
+	train(150, train_loader)
 
 
 
 if __name__ == '__main__':
-	parser = argparse.ArgumentParser(description='VAE Example')
+	parser = argparse.ArgumentParser(description='GAN Example')
 	parser.add_argument('--train_path', help='training data directory', type=str)
 	args = parser.parse_args()
-	main()
+	main(args)
 

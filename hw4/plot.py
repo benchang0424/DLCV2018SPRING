@@ -16,14 +16,15 @@ from torch.autograd import Variable
 import torchvision
 from models import *
 from utils import *
-torch.manual_seed(999)
+
 
 def plot_vae(TRAIN_DIR, TEST_DIR ,TRAIN_CSVDIR, TEST_CSVDIR, OUT_DIR):
+	torch.manual_seed(424)
 	latent_dim = 512
 	#fig1_2
-	with open("saves/vae/KLD_loss_512.pkl", "rb") as fp:   # Unpickling
+	with open("saves/vae/KLD_loss.pkl", "rb") as fp:   # Unpickling
 		KLD_loss = pickle.load(fp)
-	with open("saves/vae/MSE_loss_512.pkl", "rb") as fp:   # Unpickling
+	with open("saves/vae/MSE_loss.pkl", "rb") as fp:   # Unpickling
 		MSE_loss = pickle.load(fp)
 	plt.figure(figsize=(12, 4))
 	plt.subplot(121)
@@ -41,15 +42,15 @@ def plot_vae(TRAIN_DIR, TEST_DIR ,TRAIN_CSVDIR, TEST_CSVDIR, OUT_DIR):
 	plt.legend(loc="best")
 	plt.tight_layout()
 	filename = os.path.join(OUT_DIR, 'fig1_2.jpg')
-	#plt.savefig(filename)
+	plt.savefig(filename)
 	
 	#fig1_3
 	print("Loading model...")
 	model = VAE(latent_dim)
 	model.load_state_dict(torch.load('saves/save_models/VAE_512.pth',map_location=lambda storage, loc: storage))
 
-	test = read_image(TEST_DIR)
-	test = torch.from_numpy(test).type(torch.FloatTensor)
+	testimg = read_image(TEST_DIR)
+	test = torch.from_numpy(testimg).type(torch.FloatTensor)
 	original_faces = test[:10]
 	test = to_var(test)
 	pred = torch.FloatTensor()
@@ -64,6 +65,8 @@ def plot_vae(TRAIN_DIR, TEST_DIR ,TRAIN_CSVDIR, TEST_CSVDIR, OUT_DIR):
 		recon, mu, logvar = model(test[i].view(1,3,64,64))
 		if i < 10:
 			pred = torch.cat((pred,recon.data), dim=0)
+
+	pred = pred.cpu()
 	result = torch.cat((original_faces,pred), dim=0)
 	filename = os.path.join(OUT_DIR, 'fig1_3.jpg')
 	torchvision.utils.save_image(result, filename, nrow=10)
@@ -77,12 +80,30 @@ def plot_vae(TRAIN_DIR, TEST_DIR ,TRAIN_CSVDIR, TEST_CSVDIR, OUT_DIR):
 	torchvision.utils.save_image(rand_output.cpu().data, filename, nrow=8)
 
 	#fig1_5
+	# visialize the latent space
+	mu, logvar = model.encode(test)
+	latent_space = mu.cpu().data.numpy()
+	test_attr = pd.read_csv(TEST_CSVDIR)["Male"]
+	test_attr = np.array(test_attr)
+	latent_emb = TSNE(n_components=2, random_state=24, verbose=1).fit_transform(latent_space)
+	latent_male = latent_emb[test_attr==1]
+	latent_female = latent_emb[test_attr==0]
+
+	plt.figure()
+	plt.title('Gender')
+	plt.scatter(latent_female[:,0],latent_female[:,1], c='red', label='Female')
+	plt.scatter(latent_male[:,0],latent_male[:,1], c='blue', label='Male')
+	plt.legend(loc="best")
+
+
 	filename = os.path.join(OUT_DIR, 'fig1_5.jpg')
-	#plt.savefig(filename)
+	plt.savefig(filename)
+
 	print("VAE Done!")
 
 
 def plot_gan(TRAIN_DIR, TEST_DIR ,TRAIN_CSVDIR, TEST_CSVDIR, OUT_DIR):
+	torch.manual_seed(23469)
 	#fig2_2
 	with open("saves/gan/D_loss.pkl", "rb") as fp:   # Unpickling
 		D_loss = pickle.load(fp)
@@ -109,7 +130,7 @@ def plot_gan(TRAIN_DIR, TEST_DIR ,TRAIN_CSVDIR, TEST_CSVDIR, OUT_DIR):
 	plt.legend(loc="best")
 
 	filename = os.path.join(OUT_DIR, 'fig2_2.jpg')
-	#plt.savefig(filename)
+	plt.savefig(filename)
 
 	#fig2_3
 	rand_inputs = Variable(torch.randn(32, 100, 1, 1),volatile=True)
@@ -125,6 +146,8 @@ def plot_gan(TRAIN_DIR, TEST_DIR ,TRAIN_CSVDIR, TEST_CSVDIR, OUT_DIR):
 	print("GAN Done!")
 
 def plot_acgan(TRAIN_DIR, TEST_DIR ,TRAIN_CSVDIR, TEST_CSVDIR, OUT_DIR):
+	torch.manual_seed(240)
+
 	#fig3_2
 	with open("saves/acgan/D_loss.pkl", "rb") as fp:   # Unpickling
 		D_loss = pickle.load(fp)
@@ -155,7 +178,7 @@ def plot_acgan(TRAIN_DIR, TEST_DIR ,TRAIN_CSVDIR, TEST_CSVDIR, OUT_DIR):
 	plt.legend(loc="best")
 
 	filename = os.path.join(OUT_DIR, 'fig3_2.jpg')
-	#plt.savefig(filename)
+	plt.savefig(filename)
 
 #fig3_3
 	fixed_noise = torch.randn((10, 100, 1, 1))
