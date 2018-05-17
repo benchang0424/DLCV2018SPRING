@@ -19,7 +19,7 @@ from utils import *
 
 
 def plot_vae(TRAIN_DIR, TEST_DIR ,TRAIN_CSVDIR, TEST_CSVDIR, OUT_DIR):
-	torch.manual_seed(424)
+	torch.manual_seed(2463)
 	latent_dim = 512
 	#fig1_2
 	with open("saves/vae/KLD_loss.pkl", "rb") as fp:   # Unpickling
