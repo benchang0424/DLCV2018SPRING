@@ -105,7 +105,7 @@ def Predict(x_val, y_val, OUT_DIR):
 	cnt=0
 	with open(filename, 'w') as f:
 		for item in result:
-			f.write("%s\n" % item)
+			# f.write("%s\n" % item)
 			cnt += 1
 			if cnt != len(result):
 				f.write("%s\n" % item)
