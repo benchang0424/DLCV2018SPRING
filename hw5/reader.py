@@ -38,7 +38,7 @@ def readShortVideo(video_path, video_category, video_name, downsample_factor=12,
     for frameIdx, frame in enumerate(videogen):
         if frameIdx % downsample_factor == 0:
             frame = skimage.transform.rescale(frame, rescale_factor, mode='constant', preserve_range=True).astype(np.uint8)
-            frame = skimage.transform.resize(frame,(224,224))
+            frame = skimage.transform.resize(frame, (224, 224))
             #frames.append(frame)
             frames.append(normalize(frame).numpy())
         else:
@@ -65,6 +65,7 @@ def getVideoList(data_path):
     od = collections.OrderedDict(sorted(result.items()))
     return od
 
+
 def readFullLengthVideos(filepath):
     transform = transforms.Compose([
         transforms.ToPILImage(),
@@ -82,6 +83,7 @@ def readFullLengthVideos(filepath):
     frames = torch.stack(frames, 0)
     return frames
 
+
 def readFullLengthLabels(filepath):
     video_labels = sorted([os.path.join(filepath, file) for file in os.listdir(filepath) if file.endswith('.txt')])
     all_labels = []
@@ -91,7 +93,3 @@ def readFullLengthLabels(filepath):
             all_labels.append(lines)
 
     return all_labels
-
-
-
-
