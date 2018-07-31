@@ -53,13 +53,15 @@
 
 ## Results 
   * **Vational Autoencoder**
-    * *Reconstruction*  
+    * *Reconstruction*   
     <img src="https://github.com/benchang0424/DLCV2018SPRING/blob/master/hw4/figures/fig1_3.jpg">
+
     * *Random Generation*  
     <img src="https://github.com/benchang0424/DLCV2018SPRING/blob/master/hw4/figures/fig1_4.jpg">
 
   * **Generative Adversial Network**  
     <img src="https://github.com/benchang0424/DLCV2018SPRING/blob/master/hw4/figures/fig2_3.jpg">
+    
   * **Auxiliary Classifier GAN**  
     [no smile/smile]  
     <img src="https://github.com/benchang0424/DLCV2018SPRING/blob/master/hw4/figures/fig3_3.jpg">
