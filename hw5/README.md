@@ -57,4 +57,6 @@
    * **Visualization**
     
      * **CNN-based video features**
+         <img src="https://github.com/benchang0424/DLCV2018SPRING/blob/master/hw5/output_imgs/CNN_tsne.jpg" width=450>
+     
      * **RNN-based video features**
