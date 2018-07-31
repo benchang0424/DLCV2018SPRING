@@ -58,15 +58,17 @@
     
      * **CNN-based video features**
 
-        <img src="https://github.com/benchang0424/DLCV2018SPRING/blob/master/hw5/output_imgs/CNN_tsne.jpg" width=450>
+        <img src="https://github.com/benchang0424/DLCV2018SPRING/blob/master/hw5/output_imgs/CNN_tsne.jpg">
      
      * **RNN-based video features**
 
+        <img src="https://github.com/benchang0424/DLCV2018SPRING/blob/master/hw5/output_imgs/RNN_tsne.jpg">
+    
      * **Temporal action segmentation**
        * *OP01-R03-BaconAndEggs*
 
-         <img src="https://github.com/benchang0424/DLCV2018SPRING/blob/master/hw5/output_imgs/OP01-R03-BaconAndEggs.jpg">
+        <img src="https://github.com/benchang0424/DLCV2018SPRING/blob/master/hw5/output_imgs/OP01-R03-BaconAndEggs.jpg">
 
        * *OP06-R05-Cheeseburger*
 
-         <img src="https://github.com/benchang0424/DLCV2018SPRING/blob/master/hw5/output_imgs/OP06-R05-Cheeseburger.jpg">
+        <img src="https://github.com/benchang0424/DLCV2018SPRING/blob/master/hw5/output_imgs/OP06-R05-Cheeseburger.jpg">
