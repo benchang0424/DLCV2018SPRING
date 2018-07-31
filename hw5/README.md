@@ -29,7 +29,7 @@
 
    * **Preprocessing**
     
-      Refers to the [**preprocess**](https://github.com/thtang/DLCV2018SPRING/tree/master/hw5/train) folder.
+      Refers to the [**preprocess**](https://github.com/benchang0424/DLCV2018SPRING/tree/master/hw5/preprocess) folder.
      
    * **Training**
      
@@ -49,7 +49,7 @@
 ## Results
 
    * **Accuracy**
-   
+
       |         |CNN-based feautres           | RNN-based feautres  | Temporal action prediction
       | ------------- |:-------------:|:-----:|:-----:|
       | *Validation Accuracy.*    | 0.4952 | 0.5184 | 0.5885
