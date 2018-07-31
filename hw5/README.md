@@ -49,9 +49,10 @@
 ## Results
 
    * **Accuracy**
-        |         |CNN-based feautres           | RNN-based feautres  | Temporal action prediction
-        | ------------- |:-------------:|:-----:|:-----:|
-        | *Validation Accuracy.*    | 0.4952 | 0.5184 | 0.5885
+   
+      |         |CNN-based feautres           | RNN-based feautres  | Temporal action prediction
+      | ------------- |:-------------:|:-----:|:-----:|
+      | *Validation Accuracy.*    | 0.4952 | 0.5184 | 0.5885
   
    * **Visualization**
     
