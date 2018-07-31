@@ -33,6 +33,7 @@
      
    * **Training**
      
+      Refers to the [**train**](https://github.com/benchang0424/DLCV2018SPRING/tree/master/hw5/train) folder.
    * **Testing**
 
      ```bash
