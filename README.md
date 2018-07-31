@@ -1,8 +1,6 @@
 # DLCV 2018 SPRING
-Deep Learning for Computer Vision (2018 Spring) at National Taiwan University (NTU)
-
-Lecturer: Prof. [[Yu-Chiang Frank Wang](http://vllab.ee.ntu.edu.tw/members.html)]
-
+Deep Learning for Computer Vision (2018 Spring) at National Taiwan University (NTU)  
+Lecturer: Prof. [[Yu-Chiang Frank Wang](http://vllab.ee.ntu.edu.tw/members.html)]  
 Course website: [[http://vllab.ee.ntu.edu.tw/dlcv.html](http://vllab.ee.ntu.edu.tw/dlcv.html)]
 
 ## Content
