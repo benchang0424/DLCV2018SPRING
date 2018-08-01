@@ -1,6 +1,18 @@
-# Action recognition
+# Action recognition with Feature Extraction
+
+## Table of Content
+
+<!-- @import "[TOC]" {cmd="toc" depthFrom=1 depthTo=6 orderedList=false} -->
 
 <!-- /code_chunk_output -->
+
+* [Action recognition with Feature Extraction](#action-recognition-with-feature-extraction)
+	* [Table of Content](#table-of-content)
+  * [Task](#task)
+  * [Requirements](#requirements)
+  * [Dataset](#dataset)
+  * [Usage](#usage)
+  * [Results](#results)
 
 ## Task
   * Feature extraction from pre-trained CNN models
@@ -9,6 +21,8 @@
     * Training on RNN with sequences of CNN features and labels
   * Temporal action segmentation
     * Extend RNN model for sequence-to-sequence prediction
+  
+    For more details, please refers to the [PPT](https://github.com/benchang0424/DLCV2018SPRING/blob/master/hw5/hw5_student.pdf) provided by TAs.
 
 ## Requirements
   * Python 3.6.4

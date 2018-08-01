@@ -9,18 +9,18 @@
 * [Image Generation and Feature Disentanglement](#image-generation-and-feature-disentanglement)
 	* [Table of Content](#table-of-content)
   * [Task](#task)
-	* [Requirements](#requirements)
-	* [Usage](#usage)
-	* [Results](#results)
+  * [Requirements](#requirements)
+  * [Usage](#usage)
+  * [Results](#results)
 		
 
 <!-- /code_chunk_output -->
 ## Task
   * Variational Autoencoder (VAE)
   * Generative Adversarial Network (GAN)
-  * Auxiliary Classifier Generative Adversarial Networks (ACGAN)
+  * Auxiliary Classifier Generative Adversarial Network (ACGAN)
   
-    For more details, please refers to the [PPT] provided by TAs.
+    For more details, please refers to the [PPT](https://github.com/benchang0424/DLCV2018SPRING/blob/master/hw4/dlcv_hw4.pdf) provided by TAs.
 
 ## Requirements
   * Python 3.6
