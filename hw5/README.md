@@ -15,14 +15,14 @@
   * [Results](#results)
 
 ## Task
-  * Feature extraction from pre-trained CNN models
+  * **Feature extraction from pre-trained CNN models**
     * VGG-16
-  * Trimmed action recognition
+  * **Trimmed action recognition**
     * Training on RNN with sequences of CNN features and labels
-  * Temporal action segmentation
+  * **Temporal action segmentation**
     * Extend RNN model for sequence-to-sequence prediction
   
-    For more details, please refers to the [PPT](https://github.com/benchang0424/DLCV2018SPRING/blob/master/hw5/hw5_student.pdf) provided by TAs.
+  For more details, please refers to the [PPT](https://github.com/benchang0424/DLCV2018SPRING/blob/master/hw5/hw5_student.pdf) provided by TAs.
 
 ## Requirements
   * Python 3.6.4
